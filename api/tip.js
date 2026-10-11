@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
   const cat = String(b.cat || 'general').slice(0, 20);
   const prompt = "You are a warm, caring women's health assistant inside a period tracker app for a young Indian woman. Give ONE short practical health tip (2-3 sentences) in simple Hinglish (Roman Hindi + English mix). Context: cycle day " + cd + " of ~" + avg + ", next period in " + dl + " days, phase: " + phase + ". Recent symptoms logged: " + sym + ". Focus: " + cat + ". Be encouraging, never medical-diagnosis. No markdown.";
   try {
-    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + encodeURIComponent(process.env.GEMINI_KEY), {
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=' + encodeURIComponent(process.env.GEMINI_KEY), {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
     });
